@@ -148,6 +148,9 @@
   <data name="MovingTimeSecondLabel.Text" xml:space="preserve">
     <value>secondi</value>
   </data>
+  <data name="StatusStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 366</value>
+  </data>
   <data name="StatusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>536, 32</value>
   </data>
@@ -1960,6 +1963,18 @@
   </data>
   <data name="StripMenuItalian.Text" xml:space="preserve">
     <value>Italiano</value>
+  </data>
+  <data name="StripMenuAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 29</value>
+  </data>
+  <data name="StripMenuAbout.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="LeftClickAfterMovingBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>358, 29</value>
+  </data>
+  <data name="LeftClickAfterMovingBox.Text" xml:space="preserve">
+    <value>Click sinistro dopo aver mosso il cursore</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>536, 398</value>

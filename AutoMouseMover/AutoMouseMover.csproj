@@ -24,11 +24,11 @@
   <PropertyGroup>
     <ApplicationIcon>app_icon.ico</ApplicationIcon>
     <Title>AutoMouseMover</Title>
-    <Version>1.1.2</Version>
+    <Version>1.2.0</Version>
     <Authors>Emanuele Bellocchia</Authors>
     <Product>Automatic Mouse Mover</Product>
     <Description>Simple automatic mouse mover application</Description>
-    <Copyright>Copyright © Emanuele Bellocchia 2024</Copyright>
+    <Copyright>Copyright © Emanuele Bellocchia 2025</Copyright>
     <PackageProjectUrl>https://github.com/ebellocchia/auto_mouse_mover</PackageProjectUrl>
     <PackageIcon></PackageIcon>
     <RepositoryUrl>https://github.com/ebellocchia/auto_mouse_mover</RepositoryUrl>
@@ -76,6 +76,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>lang_it.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\lang_en.resx">
@@ -86,5 +91,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>lang_it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>

@@ -39,7 +39,6 @@ namespace AutoMouseMover
         //
         #region Constants
 
-        // Balloon tip timeout
         private const int BALLOON_TIP_TIMEOUT = 500;
 
         #endregion
@@ -96,7 +95,7 @@ namespace AutoMouseMover
             }
 
             // Initialize auto mouse mover class
-            mAutoMouseMover.Initialize((int)MovingPixelBox.Value);
+            mAutoMouseMover.Initialize((int)MovingPixelBox.Value, LeftClickAfterMovingBox.Checked);
             // Set timer interval and start it
             CursorTimer.Interval = ((int)MovingPeriodBox.Value) * 1000;
             CursorTimer.Start();
@@ -198,6 +197,7 @@ namespace AutoMouseMover
             {
                 MovingPeriodBox.Value = mSettings.MovingTime;
                 MovingPixelBox.Value = mSettings.MovingPixel;
+                LeftClickAfterMovingBox.Checked = mSettings.LeftClickAfterMoving;
                 MinimizeToTrayBarBox.Checked = mSettings.MinimizeToTrayBar;
                 ShowTrayBarIconBox.Checked = mSettings.ShowTrayBarIcon;
             }
@@ -208,6 +208,7 @@ namespace AutoMouseMover
                 // Set again
                 MovingPeriodBox.Value = mSettings.MovingTime;
                 MovingPixelBox.Value = mSettings.MovingPixel;
+                LeftClickAfterMovingBox.Checked = mSettings.LeftClickAfterMoving;
                 MinimizeToTrayBarBox.Checked = mSettings.MinimizeToTrayBar;
                 ShowTrayBarIconBox.Checked = mSettings.ShowTrayBarIcon;
             }
@@ -218,6 +219,7 @@ namespace AutoMouseMover
         {
             mSettings.MovingTime = (int)MovingPeriodBox.Value;
             mSettings.MovingPixel = (int)MovingPixelBox.Value;
+            mSettings.LeftClickAfterMoving = LeftClickAfterMovingBox.Checked;
             mSettings.MinimizeToTrayBar = MinimizeToTrayBarBox.Checked;
             mSettings.ShowTrayBarIcon = ShowTrayBarIconBox.Checked;
             mSettings.Save();
@@ -230,8 +232,9 @@ namespace AutoMouseMover
             StripMenuLanguage.Enabled = cEnabled;
             MovingPeriodBox.Enabled = cEnabled;
             MovingPixelBox.Enabled = cEnabled;
+            LeftClickAfterMovingBox.Enabled = cEnabled;
             MinimizeToTrayBarBox.Enabled = cEnabled;
-            ShowTrayBarIconBox.Enabled = cEnabled;
+            ShowTrayBarIconBox.Enabled = MinimizeToTrayBarBox.Checked ? cEnabled : false;
             StartButton.Enabled = cEnabled;
             StopButton.Enabled = !cEnabled;
         }

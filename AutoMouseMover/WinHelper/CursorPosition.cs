@@ -34,7 +34,6 @@ namespace AutoMouseMover.WinHelper
         //
         #region Constants
 
-        // Invalid value
         private const int INVALID_VALUE = -1;
 
         #endregion
@@ -44,9 +43,7 @@ namespace AutoMouseMover.WinHelper
         //
         #region Members
         
-        // X
         private int mX;
-        // Y
         private int mY;
 
         #endregion

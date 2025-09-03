@@ -70,5 +70,17 @@ namespace AutoMouseMover.Properties {
                 this["ShowTrayBarIcon"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LeftClickAfterMoving {
+            get {
+                return ((bool)(this["LeftClickAfterMoving"]));
+            }
+            set {
+                this["LeftClickAfterMoving"] = value;
+            }
+        }
     }
 }

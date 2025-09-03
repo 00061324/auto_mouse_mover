@@ -32,13 +32,11 @@ namespace AutoMouseMover.Utils
         //
         #region Constants
 
-        // Defautl moving period
-        private const int DEF_MOVING_PERIOD       = 5;
-        // Default moving pixel
-        private const int DEF_MOVING_PIXEL        = 5;
-        // Default minimize to tray bar
-        private const bool DEF_MINIMIZE_TRAY_BAR  = true;
-        // Default show tray bar icon
+        // Default settings
+        private const int DEF_MOVING_PERIOD = 5;
+        private const int DEF_MOVING_PIXEL = 5;
+        private const bool DEF_LEFT_CLICK_AFTER_MOVING = true;
+        private const bool DEF_MINIMIZE_TRAY_BAR = true;
         private const bool DEF_SHOW_TRAY_BAR_ICON = true;
 
         #endregion
@@ -52,6 +50,8 @@ namespace AutoMouseMover.Utils
         private int  mMovingPeriod;
         // Moving pixel
         private int  mMovingPixel;
+        // Left click after moving
+        private bool mLeftClickAfterMoving;
         // Minimize to tray flag
         private bool mMinimizeToTrayBar;
         // Show tray icon flag
@@ -73,28 +73,31 @@ namespace AutoMouseMover.Utils
         // Load settings
         public void Load()
         {
-            mMovingPeriod      = Properties.Settings.Default.MovingPeriod;
-            mMovingPixel       = Properties.Settings.Default.MovingPixel;
+            mMovingPeriod = Properties.Settings.Default.MovingPeriod;
+            mMovingPixel = Properties.Settings.Default.MovingPixel;
+            mLeftClickAfterMoving = Properties.Settings.Default.LeftClickAfterMoving;
             mMinimizeToTrayBar = Properties.Settings.Default.MinimizeToTrayBar;
-            mShowTrayBarIcon   = Properties.Settings.Default.ShowTrayBarIcon;
+            mShowTrayBarIcon = Properties.Settings.Default.ShowTrayBarIcon;
         }
 
         // Load default settings
         public void LoadDefault()
         {
-            mMovingPeriod      = DEF_MOVING_PERIOD;
-            mMovingPixel       = DEF_MOVING_PIXEL;
+            mMovingPeriod = DEF_MOVING_PERIOD;
+            mMovingPixel = DEF_MOVING_PIXEL;
+            mLeftClickAfterMoving = DEF_LEFT_CLICK_AFTER_MOVING;
             mMinimizeToTrayBar = DEF_MINIMIZE_TRAY_BAR;
-            mShowTrayBarIcon   = DEF_SHOW_TRAY_BAR_ICON;
+            mShowTrayBarIcon = DEF_SHOW_TRAY_BAR_ICON;
         }
 
         // Save settings
         public void Save()
         {
-            Properties.Settings.Default.MovingPeriod      = mMovingPeriod;
-            Properties.Settings.Default.MovingPixel       = mMovingPixel;
+            Properties.Settings.Default.MovingPeriod = mMovingPeriod;
+            Properties.Settings.Default.MovingPixel = mMovingPixel;
+            Properties.Settings.Default.LeftClickAfterMoving = mLeftClickAfterMoving;
             Properties.Settings.Default.MinimizeToTrayBar = mMinimizeToTrayBar;
-            Properties.Settings.Default.ShowTrayBarIcon   = mShowTrayBarIcon;
+            Properties.Settings.Default.ShowTrayBarIcon = mShowTrayBarIcon;
             Properties.Settings.Default.Save();
         }
 
@@ -117,6 +120,13 @@ namespace AutoMouseMover.Utils
         {
             get { return mMovingPixel; }
             set { mMovingPixel = value; }
+        }
+
+        // Left click after moving property
+        public bool LeftClickAfterMoving
+        {
+            get { return mLeftClickAfterMoving; }
+            set { mLeftClickAfterMoving = value; }
         }
 
         // Minimize to tray bar property

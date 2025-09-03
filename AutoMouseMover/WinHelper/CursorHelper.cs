@@ -87,12 +87,12 @@ namespace AutoMouseMover.WinHelper
             // Create INPUT structure
             var input = new SendInputWrapper.Input();
             // Fill it
-            input.mType                = SendInputWrapper.eInputTypes.INPUT_MOUSE;
+            input.mType = SendInputWrapper.eInputTypes.INPUT_MOUSE;
             input.mData.mMi.mMouseData = 0;
-            input.mData.mMi.mTime      = 0;
-            input.mData.mMi.mX         = real_x;
-            input.mData.mMi.mY         = real_y;
-            input.mData.mMi.mFlags     = SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_ABSOLUTE | SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_MOVE;
+            input.mData.mMi.mTime = 0;
+            input.mData.mMi.mX = real_x;
+            input.mData.mMi.mY = real_y;
+            input.mData.mMi.mFlags = SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_ABSOLUTE | SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_MOVE;
             // Send input
             return SendInputWrapper.SendInput(input);
         }
@@ -104,12 +104,12 @@ namespace AutoMouseMover.WinHelper
             // Create INPUT structure
             var input = new SendInputWrapper.Input();
             // Fill it
-            input.mType                = SendInputWrapper.eInputTypes.INPUT_MOUSE;
+            input.mType = SendInputWrapper.eInputTypes.INPUT_MOUSE;
             input.mData.mMi.mMouseData = 0;
-            input.mData.mMi.mTime      = 0;
-            input.mData.mMi.mX         = cDeltaX;
-            input.mData.mMi.mY         = cDeltaY;
-            input.mData.mMi.mFlags     = SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_MOVE;
+            input.mData.mMi.mTime = 0;
+            input.mData.mMi.mX = cDeltaX;
+            input.mData.mMi.mY = cDeltaY;
+            input.mData.mMi.mFlags = SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_MOVE;
             // Send input
             return SendInputWrapper.SendInput(input);
         }
@@ -131,6 +131,36 @@ namespace AutoMouseMover.WinHelper
             new_pos.MoveToRelative(cDeltaX, cDeltaY);
 
             return CheckAbsolutePosition(new_pos);
+        }
+
+        public static bool LeftClick()
+        {
+            // Create INPUT structure
+            var input = new SendInputWrapper.Input();
+            // Fill it
+            input.mType = SendInputWrapper.eInputTypes.INPUT_MOUSE;
+            input.mData.mMi.mMouseData = 0;
+            input.mData.mMi.mTime = 0;
+            input.mData.mMi.mX = 0;
+            input.mData.mMi.mY = 0;
+            input.mData.mMi.mFlags = SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_LEFTDOWN;
+            // Send input down
+            if (!SendInputWrapper.SendInput(input))
+            {
+                return false;
+            }
+
+            // Create INPUT structure
+            input = new SendInputWrapper.Input();
+            // Fill it
+            input.mType = SendInputWrapper.eInputTypes.INPUT_MOUSE;
+            input.mData.mMi.mMouseData = 0;
+            input.mData.mMi.mTime = 0;
+            input.mData.mMi.mX = 0;
+            input.mData.mMi.mY = 0;
+            input.mData.mMi.mFlags = SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_LEFTUP;
+            // Send input up
+            return SendInputWrapper.SendInput(input);
         }
 
         #endregion

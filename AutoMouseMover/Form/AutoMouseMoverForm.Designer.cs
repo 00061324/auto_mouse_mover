@@ -52,6 +52,7 @@
             StripMenuEnglish = new System.Windows.Forms.ToolStripMenuItem();
             StripMenuItalian = new System.Windows.Forms.ToolStripMenuItem();
             StripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            LeftClickAfterMovingBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)MovingPixelBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MovingPeriodBox).BeginInit();
             StatusStrip.SuspendLayout();
@@ -79,7 +80,7 @@
             // MovingPixelBox
             // 
             resources.ApplyResources(MovingPixelBox, "MovingPixelBox");
-            MovingPixelBox.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
+            MovingPixelBox.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
             MovingPixelBox.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             MovingPixelBox.Name = "MovingPixelBox";
             MovingPixelBox.Value = new decimal(new int[] { 5, 0, 0, 0 });
@@ -99,21 +100,21 @@
             // 
             // StatusStrip
             // 
-            resources.ApplyResources(StatusStrip, "StatusStrip");
             StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StatusLabel, StatusTextLabel });
+            resources.ApplyResources(StatusStrip, "StatusStrip");
             StatusStrip.Name = "StatusStrip";
             StatusStrip.SizingGrip = false;
             // 
             // StatusLabel
             // 
-            resources.ApplyResources(StatusLabel, "StatusLabel");
             StatusLabel.Name = "StatusLabel";
+            resources.ApplyResources(StatusLabel, "StatusLabel");
             // 
             // StatusTextLabel
             // 
-            resources.ApplyResources(StatusTextLabel, "StatusTextLabel");
             StatusTextLabel.Name = "StatusTextLabel";
+            resources.ApplyResources(StatusTextLabel, "StatusTextLabel");
             // 
             // CursorTimer
             // 
@@ -128,21 +129,21 @@
             // 
             // TrayBarContextMenu
             // 
-            resources.ApplyResources(TrayBarContextMenu, "TrayBarContextMenu");
             TrayBarContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             TrayBarContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { TrayBarMenuOpen, TrayBarMenuClose });
             TrayBarContextMenu.Name = "TrayBarContextMenu";
+            resources.ApplyResources(TrayBarContextMenu, "TrayBarContextMenu");
             // 
             // TrayBarMenuOpen
             // 
-            resources.ApplyResources(TrayBarMenuOpen, "TrayBarMenuOpen");
             TrayBarMenuOpen.Name = "TrayBarMenuOpen";
+            resources.ApplyResources(TrayBarMenuOpen, "TrayBarMenuOpen");
             TrayBarMenuOpen.Click += TrayBarMenuOpen_Click;
             // 
             // TrayBarMenuClose
             // 
-            resources.ApplyResources(TrayBarMenuClose, "TrayBarMenuClose");
             TrayBarMenuClose.Name = "TrayBarMenuClose";
+            resources.ApplyResources(TrayBarMenuClose, "TrayBarMenuClose");
             TrayBarMenuClose.Click += TrayBarMenuClose_Click;
             // 
             // StopButton
@@ -171,40 +172,47 @@
             // 
             // MenuStrip
             // 
-            resources.ApplyResources(MenuStrip, "MenuStrip");
             MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuLanguage, StripMenuAbout });
+            resources.ApplyResources(MenuStrip, "MenuStrip");
             MenuStrip.Name = "MenuStrip";
             MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // StripMenuLanguage
             // 
-            resources.ApplyResources(StripMenuLanguage, "StripMenuLanguage");
             StripMenuLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuEnglish, StripMenuItalian });
             StripMenuLanguage.Name = "StripMenuLanguage";
+            resources.ApplyResources(StripMenuLanguage, "StripMenuLanguage");
             // 
             // StripMenuEnglish
             // 
-            resources.ApplyResources(StripMenuEnglish, "StripMenuEnglish");
             StripMenuEnglish.Name = "StripMenuEnglish";
+            resources.ApplyResources(StripMenuEnglish, "StripMenuEnglish");
             StripMenuEnglish.Click += StripMenuEnglish_Click;
             // 
             // StripMenuItalian
             // 
-            resources.ApplyResources(StripMenuItalian, "StripMenuItalian");
             StripMenuItalian.Name = "StripMenuItalian";
+            resources.ApplyResources(StripMenuItalian, "StripMenuItalian");
             StripMenuItalian.Click += StripMenuItalian_Click;
             // 
             // StripMenuAbout
             // 
-            resources.ApplyResources(StripMenuAbout, "StripMenuAbout");
             StripMenuAbout.Name = "StripMenuAbout";
+            resources.ApplyResources(StripMenuAbout, "StripMenuAbout");
             StripMenuAbout.Click += StripMenuAbout_Click;
+            // 
+            // LeftClickAfterMovingBox
+            // 
+            resources.ApplyResources(LeftClickAfterMovingBox, "LeftClickAfterMovingBox");
+            LeftClickAfterMovingBox.Name = "LeftClickAfterMovingBox";
+            LeftClickAfterMovingBox.UseVisualStyleBackColor = true;
             // 
             // AutoMouseMoverForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(LeftClickAfterMovingBox);
             Controls.Add(ShowTrayBarIconBox);
             Controls.Add(MinimizeToTrayBarBox);
             Controls.Add(StopButton);
@@ -257,6 +265,7 @@
         private System.Windows.Forms.ToolStripMenuItem StripMenuLanguage;
         private System.Windows.Forms.ToolStripMenuItem StripMenuEnglish;
         private System.Windows.Forms.ToolStripMenuItem StripMenuItalian;
+        private System.Windows.Forms.CheckBox LeftClickAfterMovingBox;
     }
 }
 

@@ -60,11 +60,13 @@ namespace AutoMouseMover.Logic
         #region Members
 
         // Last cursor position
-        private CursorPosition    mLastCursorPos;
+        private CursorPosition mLastCursorPos;
         // Moving pixels amount
-        private int               mMovingPixel;
+        private int mMovingPixel;
         // Moving direction
         private eMovingDirections mMovingDir;
+        // Left click flag
+        private bool mLeftClick;
 
         #endregion
 
@@ -76,15 +78,16 @@ namespace AutoMouseMover.Logic
         // Constructor
         public AutomaticMouseMover()
         {
-            Initialize(DEFAULT_MOVING_PIXEL);
+            Initialize(DEFAULT_MOVING_PIXEL, false);
         }
 
         // Initialize
-        public void Initialize(int cMovingPixel)
+        public void Initialize(int cMovingPixel, bool cLeftClick)
         {
-            mMovingDir     = eMovingDirections.FORWARD;
-            mMovingPixel   = cMovingPixel;
+            mMovingDir = eMovingDirections.FORWARD;
+            mMovingPixel = cMovingPixel;
             mLastCursorPos = CursorHelper.GetCurrentPosition();
+            mLeftClick = cLeftClick;
         }
 
         // Move mouse
@@ -99,7 +102,7 @@ namespace AutoMouseMover.Logic
                 // Get pixel movement depending on the direction
                 int mov_pixel_rel = (mMovingDir == eMovingDirections.BACKWARD) ? (-1 * mMovingPixel) : mMovingPixel;
                 // Move cursor
-                MoveCursor(mov_pixel_rel);
+                MoveCursor(mov_pixel_rel, mLeftClick);
                 // Update moving direction
                 UpdateMovingDir();
             }
@@ -116,7 +119,7 @@ namespace AutoMouseMover.Logic
         #region Private methods
 
         // Move cursor
-        private void MoveCursor(int cDeltaPixel)
+        private void MoveCursor(int cDeltaPixel, bool cClick)
         {
             var position = CursorHelper.GetCurrentPosition();
             var x_delta = cDeltaPixel;
@@ -158,6 +161,10 @@ namespace AutoMouseMover.Logic
             else
             {
                 CursorHelper.SetPositionRelative(x_delta, y_delta);
+                if (cClick)
+                {
+                    CursorHelper.LeftClick();
+                }
             }
         }
 
