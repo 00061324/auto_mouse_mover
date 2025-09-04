@@ -119,7 +119,8 @@ namespace AutoMouseMover.Logic
         #region Private methods
 
         // Move cursor
-        private void MoveCursor(int cDeltaPixel, bool cClick)
+        private void MoveCursor(int cDeltaPixel,
+                                bool cClick)
         {
             var position = CursorHelper.GetCurrentPosition();
             var x_delta = cDeltaPixel;
