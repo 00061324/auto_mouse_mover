@@ -14,27 +14,27 @@ jobs:
           $file = "AutoMouseMover/Form/AutoMouseMoverForm.cs"
           $content = Get-Content $file -Raw
           $oldCode = @'
-        private void InitializeResource()
-        {
+          private void InitializeResource()
+          {
             string res_name = "AutoMouseMover.Properties.lang_" + 
                 System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             mResourceMng = new ResourceManager(
                 res_name,
                 Assembly.GetExecutingAssembly()
             );
-        }
-'@
+          }
+          '@
           $newCode = @'
-        private void InitializeResource()
-        {
+          private void InitializeResource()
+          {
             var assembly = Assembly.GetExecutingAssembly();
             string lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             string res_name = "AutoMouseMover.Properties.lang_" + lang;
             bool exists = Array.Exists(assembly.GetManifestResourceNames(), r => r == res_name + ".resources");
             if (!exists) res_name = "AutoMouseMover.Properties.lang_en";
             mResourceMng = new ResourceManager(res_name, assembly);
-        }
-'@
+          }
+          '@
           $content = $content.Replace($oldCode, $newCode)
           Set-Content $file $content
         shell: pwsh
