@@ -9,6 +9,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Fix language fallback bug
+        run: |
+          $file = "AutoMouseMover/Form/AutoMouseMoverForm.cs"
+          $content = Get-Content $file -Raw
+          $oldCode = @'
+        private void InitializeResource()
+        {
+            string res_name = "AutoMouseMover.Properties.lang_" + 
+                System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            mResourceMng = new ResourceManager(
+                res_name,
+                Assembly.GetExecutingAssembly()
+            );
+        }
+'@
+          $newCode = @'
+        private void InitializeResource()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            string lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            string res_name = "AutoMouseMover.Properties.lang_" + lang;
+            bool exists = Array.Exists(assembly.GetManifestResourceNames(), r => r == res_name + ".resources");
+            if (!exists) res_name = "AutoMouseMover.Properties.lang_en";
+            mResourceMng = new ResourceManager(res_name, assembly);
+        }
+'@
+          $content = $content.Replace($oldCode, $newCode)
+          Set-Content $file $content
+        shell: pwsh
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -17,7 +47,7 @@ jobs:
       - name: Publish
         run: |
           cd AutoMouseMover
-          dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:SatelliteResourceLanguages=en -o ../output
+          dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ../output
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
